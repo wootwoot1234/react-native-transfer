@@ -7,6 +7,10 @@ A module for React Native for uploading multiple files
 * Supports the following file paths: `file://path/to.file`, `data://path/to.file`, `/path/to.file` and `assets-library:` (untested)
 * Reports progress of file transfer percentage.
 
+## Road Map, Feature Requests & Bug Fixes
+
+* To Do: Download file with progress
+
 I will add to this module as I need more features and I hope you will too, pull requests are always welcome.  I will not add features on request because I'm busy with other projects.  I want this to be a community written module so if there is a feature that's missing or bug, add it or fix it and send me a pull request.  If you don't know Objective C you can learn it.  We all were where you are now at some point.  [StackOverflow.com](http://stackoverflow.com/) is your friend.  :)
 
 ## Getting started

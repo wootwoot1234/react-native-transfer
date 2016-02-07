@@ -64,7 +64,7 @@ var FileUploadDemo = React.createClass({
     var subscription = NativeAppEventEmitter.addListener(
         'transferring',
         (response) => {
-            console.log("Transferring: percentage: ", response.percentage);
+            console.log("Transferring: percentage: ", response.progress * 100);
         }
     );
     Transfer.Upload(

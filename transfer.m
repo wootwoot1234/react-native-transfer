@@ -192,8 +192,8 @@ RCT_EXPORT_METHOD(Upload:(NSDictionary *)obj successCallback:(RCTResponseSenderB
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didSendBodyData:(int64_t)bytesSent totalBytesSent:(int64_t)totalBytesSent totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend
 {
-    float percentage = (totalBytesSent / (totalBytesExpectedToSend * 1.0f) * 100);
-    [self.bridge.eventDispatcher sendAppEventWithName:@"transferring" body:@{@"percentage": [NSString stringWithFormat:@"%f", percentage]}];
+    float progress = (totalBytesSent / (totalBytesExpectedToSend * 1.0f));
+    [self.bridge.eventDispatcher sendAppEventWithName:@"transferring" body:@{@"progress": [NSString stringWithFormat:@"%f", progress]}];
 }
 
 @end

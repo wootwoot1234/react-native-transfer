@@ -1,11 +1,12 @@
 'use strict';
 
 var React, {NativeModules} = require('react-native');
+var NativeTransfer = NativeModules.Transfer;
 
 var Transfer = {
-    Upload: function(files) {
-        NativeModules.Transfer.Upload(files, successCallback, errorCallback);
+    Upload: function(obj, successCallback, errorCallback) {
+        NativeTransfer.Upload(obj, successCallback, errorCallback);
     },
 };
 
-module.exports = {Transfer};
+module.exports = Transfer;

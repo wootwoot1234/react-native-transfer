@@ -46,7 +46,6 @@ RCT_EXPORT_METHOD(Upload:(NSDictionary *)obj successCallback:(RCTResponseSenderB
         [req setValue:val forHTTPHeaderField:key];
     }
 
-
     NSData *formBoundaryData = [[NSString stringWithFormat:@"--%@\r\n", formBoundaryString] dataUsingEncoding:NSUTF8StringEncoding];
     NSMutableData* reqBody = [NSMutableData data];
 
@@ -75,7 +74,6 @@ RCT_EXPORT_METHOD(Upload:(NSDictionary *)obj successCallback:(RCTResponseSenderB
 
         NSData *fileData = nil;
 
-        NSLog(@"filepath: %@", filepath);
         if ([filepath hasPrefix:@"assets-library:"]) {
             fileData = [self fileFromAssetsLibrary:filepath];
         } else if ([filepath hasPrefix:@"data:"] || [filepath hasPrefix:@"file:"]) {
@@ -195,7 +193,6 @@ RCT_EXPORT_METHOD(Upload:(NSDictionary *)obj successCallback:(RCTResponseSenderB
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didSendBodyData:(int64_t)bytesSent totalBytesSent:(int64_t)totalBytesSent totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend
 {
     float percentage = (totalBytesSent / (totalBytesExpectedToSend * 1.0f) * 100);
-    //NSLog(@"%f%% Uploaded", prog);
     [self.bridge.eventDispatcher sendAppEventWithName:@"transferring" body:@{@"percentage": [NSString stringWithFormat:@"%f", percentage]}];
 }
 

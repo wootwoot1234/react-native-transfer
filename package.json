@@ -1,6 +1,6 @@
 {
   "name": "react-native-transfer",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A module for React Native for uploading multiple files.",
   "author": "Tom Krones <tkrones@gmail.com>",
   "repository": {

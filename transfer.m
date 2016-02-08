@@ -156,18 +156,13 @@ RCT_EXPORT_METHOD(Upload:(NSDictionary *)obj successCallback:(RCTResponseSenderB
     return @"application/octet-stream";
 }
 
-- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler {
-    completionHandler(NSURLSessionResponseAllow);
-    NSLog(@"didReceiveResponse");
-    RCTResponseSenderBlock successCallback = [_successCallbacks objectForKey:session];
-    if (successCallback) {
-        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
-        NSLog(@"response status code: %ld", (long)[httpResponse statusCode]);
-        successCallback(@[[NSString stringWithFormat:@"%ld", (long)[httpResponse statusCode]]]);
-        [_successCallbacks removeObjectForKey:session];
-    } else {
-        RCTLogWarn(@"No callback registered for transfer success");
-    }
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
+    didReceiveData:(NSData *)data
+{
+  NSString * str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+  RCTResponseSenderBlock successCallback = [_successCallbacks objectForKey:session];
+  successCallback(@[str]);
+  [_successCallbacks removeObjectForKey:session];
 }
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error

@@ -69,8 +69,8 @@ var FileUploadDemo = React.createClass({
     );
     Transfer.Upload(
         obj,
-        function(statusCode) {
-            console.log('success: ', statusCode);
+        function(response) {
+            console.log('response: ', response);
             subscription.remove();
         },
         function(error) {

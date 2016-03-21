@@ -7,6 +7,30 @@ A module for React Native for uploading multiple files
 * Supports the following file paths: `file://path/to.file`, `data://path/to.file`, `/path/to.file` and `assets-library:` (untested)
 * Reports progress of file transfer percentage.
 
+## File uploading is built in to React Native
+
+https://github.com/facebook/react-native/blob/master/Libraries/Network/FormData.js#L29
+
+Polyfill for XMLHttpRequest2 FormData API, allowing multipart POST requests with mixed data (string, native files) to be submitted via XMLHttpRequest.
+
+Example:
+
+```javascript
+var photo = {
+    uri: uriFromCameraRoll,
+    type: 'image/jpeg',
+    name: 'photo.jpg',
+};
+
+var body = new FormData();
+body.append('authToken', 'secret');
+body.append('photo', photo);
+body.append('title', 'A beautiful photo!');
+
+xhr.open('POST', serverURL);
+xhr.send(body);
+```
+
 ## Road Map, Feature Requests & Bug Fixes
 
 * To Do: Download file with progress
